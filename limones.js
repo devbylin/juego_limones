@@ -19,5 +19,19 @@ function dibujarSuelo() {
 
 function dibujarPersonaje() {
     ctx.fillStyle = "red";
-    ctx.fillRect(personajeX / 2, canvas.height - (ALTURA_SUELO+ALTURA_PERSONAJE), ANCHO_PERSONAJE, ALTURA_PERSONAJE);
+    ctx.fillRect(personajeX /2, canvas.height - (ALTURA_SUELO+ALTURA_PERSONAJE), ANCHO_PERSONAJE, ALTURA_PERSONAJE);
+}
+// HACER UN COMIT 
+function moverIzquierda(){
+    personajeX = personajeX-10;
+    actualizarPantalla();
+
+}
+function actualizarPantalla(){
+    limpiarCanva();
+    dibujarSuelo();
+    dibujarPersonaje();
+}
+function limpiarCanva(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
 }
