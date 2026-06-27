@@ -13,13 +13,15 @@ let limonX = canvas.width / 2;
 let limonY = 5;
 let puntaje = 0;
 let vidas = 3;
-let velocidadCaida = 300;
+let juegoActivo = true;
+let velocidadCaida = 200; //velocidad inicial
 
 function iniciar() {
-    setInterval(bajarLimon,velocidadCaida);//
     dibujarSuelo();
     dibujarPersonaje();
     aparecerLimon();
+
+  setInterval(bajarLimon,velocidadCaida);
 }
 
 function dibujarSuelo() {
@@ -71,8 +73,27 @@ function detectarAtrapado() {
         aparecerLimon();
         puntaje = puntaje + 1;
         mostrarEnSpan("txtPuntaje", puntaje);
+
+                  // a) Si puntaje es 3: velocidad 150
+        if (puntaje === 3) {
+            velocidadCaida = 150;
+            console.log(" Velocidad aumentada a 150ms (puntaje: 3)");
+        }
+        if (puntaje === 6){
+            velocidadCaida = 100;
+            console.log(" Velocidad aumentada a 100ms (puntaje: 6)");
+        }
+        if (puntaje === 10){
+            juegoActivo = false;
+
+            alert(" ¡GANADOR! TIENES LOS LIMONES AHORA TE FALTA SAL Y TEQUILA ");
+
+        }
     }
-}
+
+
+}   
+  
 function detectarPiso(){
     if(limonY + ALTURA_LIMON == canvas.height-ALTURA_SUELO){
         aparecerLimon();
