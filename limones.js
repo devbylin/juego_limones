@@ -16,6 +16,7 @@ let vidas = 3;
 let intervalo;
 let juegoActivo = true;
 let velocidadCaida = 200; //velocidad inicial
+let juegoPausado = false;
 
 function iniciar() {
     dibujarSuelo();
@@ -140,4 +141,13 @@ function aparecerLimon(){
     limonX = generarAleatorio(0, canvas.width - ANCHO_LIMON);
     limonY = 0;
     actualizarPantalla();
+}
+function reiniciarJuego(){
+    vidas = 3;
+    puntaje = 0;
+    juegoActivo = true;
+    velocidadCaida 
+    mostrarEnSpan("txtVidas", vidas);
+    mostrarEnSpan("txtPuntaje", puntaje);
+    iniciar();
 }
