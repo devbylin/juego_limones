@@ -15,7 +15,7 @@ let limonY = 5;
 function iniciar() {
     dibujarSuelo();
     dibujarPersonaje();
-    dibujarLimon();
+    aparecerLimon();
 }
 
 function dibujarSuelo() {
@@ -30,14 +30,12 @@ function dibujarPersonaje() {
     // HACER UN COMIT 
 function moverIzquierda(){
     personajeX = personajeX-10;
-    actualizarPantalla();
-    deteectarColision();
+    actualizarPantalla();   
 }
 function moverDerecha(){
     personajeX = personajeX+10;
     actualizarPantalla();
-    deteectarColision();
-
+    
 }
 
 function actualizarPantalla(){
@@ -58,11 +56,23 @@ function bajarLimon(){
     limonY = limonY + 10;
     dibujarLimon();
     actualizarPantalla();
+    detectarColision();
 }
-function deteectarColision(){
-    if (limonX + ANCHO_LIMON > personajeX && limonX < personajeX + ANCHO_PERSONAJE &&
-    limonY + ALTURA_LIMON > personajeY && limonY < personajeY + ALTURA_PERSONAJE ){
-        alert("ATRAPADO!!!")
-
+function detectarColision() {
+    if (limonX + ANCHO_LIMON > personajeX &&
+        limonX < personajeX + ANCHO_PERSONAJE &&
+        limonY + ALTURA_LIMON > personajeY &&
+        limonY < personajeY + ALTURA_PERSONAJE) {
+        aparecerLimon();
     }
+}
+function probarAleatorio(){
+    let aleatorio = generarAleatorio(10,80);
+    console.log(aleatorio);
+
+}
+function aparecerLimon(){
+    limonX = generarAleatorio(0, canvas.width - ANCHO_LIMON);
+    limonY = 0;
+    actualizarPantalla();
 }
