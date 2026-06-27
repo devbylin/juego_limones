@@ -13,6 +13,7 @@ let limonX = canvas.width / 2;
 let limonY = 5;
 let puntaje = 0;
 let vidas = 3;
+let intervalo;
 let juegoActivo = true;
 let velocidadCaida = 200; //velocidad inicial
 
@@ -21,7 +22,8 @@ function iniciar() {
     dibujarPersonaje();
     aparecerLimon();
 
-  setInterval(bajarLimon,velocidadCaida);
+    if(intervalo) clearInterval(intervalo);
+    intervalo = setInterval(bajarLimon,velocidadCaida);
 }
 
 function dibujarSuelo() {
@@ -35,11 +37,11 @@ function dibujarPersonaje() {
 }
     // HACER UN COMIT 
 function moverIzquierda(){
-    personajeX = personajeX-10;
+    personajeX = personajeX-20;
     actualizarPantalla();   
 }
 function moverDerecha(){
-    personajeX = personajeX+10;
+    personajeX = personajeX+20;
     actualizarPantalla();
     
 }
@@ -77,17 +79,30 @@ function detectarAtrapado() {
                   // a) Si puntaje es 3: velocidad 150
         if (puntaje === 3) {
             velocidadCaida = 150;
-            console.log(" Velocidad aumentada a 150ms (puntaje: 3)");
+            cambiarVelocidad();
         }
-        if (puntaje === 6){
+        if (puntaje === 6) {
             velocidadCaida = 100;
-            console.log(" Velocidad aumentada a 100ms (puntaje: 6)");
+            cambiarVelocidad();
         }
-        if (puntaje === 10){
+        if (puntaje === 10) {
             juegoActivo = false;
-
-            alert(" ¡GANADOR! TIENES LOS LIMONES AHORA TE FALTA SAL Y TEQUILA ");
-
+            clearInterval(intervalo);
+            
+            ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = "#FFD700";
+            ctx.font = "bold 60px Arial";
+            ctx.textAlign = "center";
+            ctx.fillText("🍋 ¡GANADOR! 🍋", canvas.width / 2, canvas.height / 2 - 40);
+            
+            ctx.fillStyle = "white";
+            ctx.font = "30px Arial";
+            ctx.fillText("TIENES LOS LIMONES,", canvas.width / 2, canvas.height / 2 + 30);
+            ctx.fillText("AHORA TE FALTA SAL Y TEQUILA 🥃", canvas.width / 2, canvas.height / 2 + 80);
+            
+            
         }
     }
 
@@ -100,9 +115,25 @@ function detectarPiso(){
         vidas = vidas - 1;
         mostrarEnSpan("txtVidas", vidas);
         if (vidas <= 0) {
-            // 1. Mostrar alert con mensaje GAME OVER
-            alert("💀 GAME OVER 💀\n\nPuntaje final: " + puntaje);
+            juegoActivo = false;
+            clearInterval(intervalo);
+
+            ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = "#ff2a00";
+            ctx.font = "bold 60px Arial";
+            ctx.textAlign = "center";
+            ctx.fillText("GAME OVER", canvas.width / 2, canvas.height / 2 - 40);
+            
+            ctx.fillStyle = "white";
+            ctx.font = "30px Arial";
+            ctx.fillText("SUERTE PARA PROXIMA,", canvas.width / 2, canvas.height / 2 + 30);
+            ctx.fillText("PILAS", canvas.width / 2, canvas.height / 2 + 80);
+            
+        
         }
+        
     }
 }
 function aparecerLimon(){
