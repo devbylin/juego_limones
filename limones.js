@@ -1,12 +1,12 @@
 let canvas = document.getElementById("areaJuego");
 let ctx = canvas.getContext("2d");
-
+//constantes 
 const ALTURA_SUELO = 20;
 const ALTURA_PERSONAJE = 60;
 const ANCHO_PERSONAJE = 40;
 const ALTURA_LIMON = 20;
 const ANCHO_LIMON = 20;
-
+//variables 
 let personajeX = canvas.width/2;
 let personajeY = canvas.height - (ALTURA_SUELO + ALTURA_PERSONAJE);
 let limonX = canvas.width / 2;
