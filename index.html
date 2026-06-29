@@ -1,31 +1,116 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-  <title>ATRAPAR LIMONES</title>
-  <link rel="stylesheet" href="limones.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🍋 Atrapar Limones - Juego Arcade</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="limones.css" />
+  
+  <!-- Scripts -->
   <script src="util.js"></script>
-
 </head>
 <body onload="iniciar()">
-  <div class="contenedor">
-    <h1>Atrapar Limones</h1>
-    <p>Si del cielo te caen limones ..... </p>
-    <h2>AUTOR: Herlin Peñaherrera</h2>
-
-    <canvas id="areaJuego" width="600" height="400"></canvas>
-
-    <div class="panel">
-      <p>Puntaje: <span id="txtPuntaje">0</span></p>
-      <p>Vidas: <span id="txtVidas">3</span></p>
+  <div class="game-wrapper">
+    <!-- Fondo animado -->
+    <div class="bg-animation">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
     </div>
-    <div class="botones">
-      <button onclick="moverIzquierda()">Izquierda</button>
-      <button onclick="moverDerecha()">Derecha</button>
-      <button onclick="reiniciarJuego()">Reiniciar</button>
-    
+
+    <!-- Contenedor principal -->
+    <div class="game-container">
+      <!-- Header con título -->
+      <header class="game-header">
+        <div class="title-group">
+
+          <div class="icon-wrapper">
+            <img src="nintendo.jpg" alt="Nintendo 64" class="game-logo">
+          </div>
+
+          <div>
+            <h1 class="game-title">Atrapar Limones</h1>
+            <p class="game-subtitle">Si del cielo te caen limones...</p>
+          </div>
+        </div>
+        <div class="author-badge">
+          <span class="author-label">✧</span>
+          <span class="author-name">Herlin Peñaherrera</span>
+        </div>
+      </header>
+
+      <!-- Área del juego -->
+      <div class="canvas-wrapper">
+        <canvas id="areaJuego" width="800" height="500"></canvas>
+        <div class="canvas-glow"></div>
+      </div>
+
+      <!-- Panel de estado -->
+      <div class="game-panel">
+        <div class="stat-card score-card">
+          <div class="stat-icon">🏆</div>
+          <div class="stat-content">
+            <span class="stat-label">Puntaje</span>
+            <span class="stat-value" id="txtPuntaje">0</span>
+          </div>
+        </div>
+        
+        <div class="stat-card lives-card">
+          <div class="stat-icon">❤️</div>
+          <div class="stat-content">
+            <span class="stat-label">Vidas</span>
+            <span class="stat-value" id="txtVidas">3</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controles -->
+      <div class="controls-section">
+        <div class="controls-group">
+          <button class="ctrl-btn ctrl-left" onclick="moverIzquierda()" aria-label="Mover izquierda">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          
+          <button class="ctrl-btn ctrl-right" onclick="moverDerecha()" aria-label="Mover derecha">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
+        
+        <button class="ctrl-btn ctrl-reset" onclick="reiniciarJuego()" aria-label="Reiniciar juego">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 4 23 10 17 10"></polyline>
+            <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+          </svg>
+          <span>Reiniciar</span>
+        </button>
+      </div>
+
+      <!-- Controles táctiles (móvil) -->
+      <div class="touch-controls">
+        <button class="touch-btn touch-left" onmousedown="moverIzquierda()" ontouchstart="moverIzquierda()">
+          ◀
+        </button>
+        <button class="touch-btn touch-reset" onmousedown="reiniciarJuego()" ontouchstart="reiniciarJuego()">
+          ⟳
+        </button>
+        <button class="touch-btn touch-right" onmousedown="moverDerecha()" ontouchstart="moverDerecha()">
+          ▶
+        </button>
+      </div>
     </div>
   </div>
+
   <script src="limones.js"></script>
-  
 </body>
 </html>
