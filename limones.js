@@ -1,12 +1,12 @@
 let canvas = document.getElementById("areaJuego");
 let ctx = canvas.getContext("2d");
-
+//constantes 
 const ALTURA_SUELO = 20;
-const ALTURA_PERSONAJE = 60;
-const ANCHO_PERSONAJE = 40;
+const ALTURA_PERSONAJE = 70;
+const ANCHO_PERSONAJE = 50;
 const ALTURA_LIMON = 20;
 const ANCHO_LIMON = 20;
-
+//variables 
 let personajeX = canvas.width/2;
 let personajeY = canvas.height - (ALTURA_SUELO + ALTURA_PERSONAJE);
 let limonX = canvas.width / 2;
@@ -33,7 +33,7 @@ function dibujarSuelo() {
 }
 
 function dibujarPersonaje() {
-    ctx.fillStyle = "red";
+    ctx.fillStyle = "blue";
     ctx.fillRect(personajeX, personajeY, ANCHO_PERSONAJE, ALTURA_PERSONAJE);
 }
     // HACER UN COMIT 
@@ -125,11 +125,11 @@ function detectarPiso(){
             ctx.fillStyle = "#ff2a00";
             ctx.font = "bold 60px Arial";
             ctx.textAlign = "center";
-            ctx.fillText("GAME OVER", canvas.width / 2, canvas.height / 2 - 40);
+            ctx.fillText("PERDISTE", canvas.width / 2, canvas.height / 2 - 40);
             
             ctx.fillStyle = "white";
             ctx.font = "30px Arial";
-            ctx.fillText("SUERTE PARA PROXIMA,", canvas.width / 2, canvas.height / 2 + 30);
+            ctx.fillText("MALA RACHA,", canvas.width / 2, canvas.height / 2 + 30);
             ctx.fillText("PILAS", canvas.width / 2, canvas.height / 2 + 80);
             
         
@@ -150,4 +150,7 @@ function reiniciarJuego(){
     mostrarEnSpan("txtVidas", vidas);
     mostrarEnSpan("txtPuntaje", puntaje);
     iniciar();
+}
+function desaparecerPersonaje(){
+    ctx.clearRect(personajeX, personajeY, ALTURA_PERSONAJE, ANCHO_PERSONAJE);
 }
